@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.martyna.Utils">
+
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.example.martyna.Activities.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.example.martyna.Activities.LoginActivity">
+
+        </activity>
+
+        <activity
+            android:name="com.example.martyna.Activities.RegistrationActivity">
+        </activity>
+
+        <activity
+            android:name="com.example.martyna.Activities.MainActivity">
+        </activity>
+
+        <activity
+            android:name="com.example.martyna.Activities.DescriptionActivity">
+
+
+        </activity>
+
+        <receiver android:name="com.example.martyna.alarmReceivers.DetectNetworkConnection">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.example.martyna.alarmReceivers.ProcessAlarmReceiver"
+            android:process=":remote"/>
+        <receiver
+            android:name="com.example.martyna.alarmReceivers.LocationAlarmReceiver"
+            android:process=":remote"/>
+        <receiver
+            android:name="com.example.martyna.alarmReceivers.CallAlarmReceiver"
+            android:process=":remote"/>
+        <receiver
+            android:name="com.example.martyna.alarmReceivers.SmsAlarmReceiver"
+            android:process=":remote"/>
+        <receiver
+            android:name="com.example.martyna.alarmReceivers.NotificationAlarmReceiver"
+            android:process=":remote"/>
+
+        <service android:name="com.example.martyna.Services.ConnectionService" />
+        <service android:name="com.example.martyna.Services.ActivityRecognizedService" />
+        <service android:name="com.example.martyna.Services.CallLogService" />
+        <!-- exported - only components of the same application can start the service -->
+        <service
+            android:name="com.example.martyna.Services.ProcessService"
+            android:exported="false" />
+        <service
+            android:name="com.example.martyna.Services.LocationService"
+            android:exported="false" />
+        <service
+            android:name="com.example.martyna.Services.SmsLogService"
+            android:exported="false" />
+        <service
+            android:name="com.example.martyna.Services.NotificationService"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
